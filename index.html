@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Hammad & Mariyam – A Magical Surprise ⭐</title>
+
+  <!-- Fullscreen mobile look -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <style>
+    * { box-sizing: border-box; font-family: 'Comic Sans MS', 'Poppins', cursive; }
+    body {
+      margin: 0; background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      display: flex; justify-content: center; align-items: center; height: 100vh;
+      overflow: hidden;
+    }
+    .slide {
+      display: none; width: 95%; max-width: 420px; background: white;
+      border-radius: 20px; padding: 20px; text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: pop 0.5s ease;
+    }
+    .slide.active { display: block; }
+    @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    img {
+      width: 200px; height: 200px; object-fit: cover;
+      border-radius: 15px; margin: 10px 0; border: 4px solid #ffd166;
+    }
+
+    .options { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; }
+    .option {
+      padding: 14px 20px; background: #ffd166; border-radius: 14px;
+      cursor: pointer; font-size: 20px; user-select: none;
+    }
+
+    .btn {
+      margin-top: 15px; padding: 12px 24px; font-size: 20px;
+      background: #06d6a0; color: white; border: none;
+      border-radius: 14px; cursor: pointer; display: none;
+    }
+
+    /* Themes */
+    .theme-animal { background: linear-gradient(135deg, #c2ffd8, #465efb); }
+    .theme-space { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+    .theme-princess { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
+    .theme-super { background: linear-gradient(135deg, #fddb92, #d1fdff); }
+    .theme-fun { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+
+    /* Confetti */
+    .confetti {
+      position: fixed; width: 8px; height: 8px; background: red;
+      top: -10px; animation: fall 2s linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" src="music.mp3" loop></audio>
+
+  <!-- SLIDE 1 -->
+  <div class="slide active theme-animal" id="slide1">
+    <h1>🐶 Hammad's Animal World</h1>
+    <img src="hammad1.jpg">
+    <p>Hammad smiles so big and bright,<br>Guess the animal and do it right!</p>
+    <h2>Which animal says "Woof"?</h2>
+    <div class="options">
+      <div class="option" onclick="correct(1, 'Good job Hammad!')">🐶 Dog</div>
+      <div class="option" onclick="wrong()">🐱 Cat</div>
+      <div class="option" onclick="wrong()">🐮 Cow</div>
+    </div>
+    <button class="btn" id="btn1" onclick="next(1)">Next ➡️</button>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide theme-space" id="slide2">
+    <h1>🚀 Mariyam in Space</h1>
+    <img src="mariyam1.jpg">
+    <p>Mariyam shines like stars above,<br>Find the Earth with lots of love!</p>
+    <h2>Which one is Earth?</h2>
+    <div class="options">
+      <div class="option" onclick="wrong()">🌕</div>
+      <div class="option" onclick="correct(2, 'Well done Mariyam!')">🌍</div>
+      <div class="option" onclick="wrong()">🪐</div>
+    </div>
+    <button class="btn" id="btn2" onclick="next(2)">Next ➡️</button>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide theme-princess" id="slide3">
+    <h1>👑 Princess Mariyam</h1>
+    <img src="mariyam2.jpg">
+    <p>Pretty bows and hearts so pink,<br>Choose the color, stop and think!</p>
+    <h2>Which color is Pink?</h2>
+    <div class="options">
+      <div class="option" onclick="correct(3, 'Yay Mariyam!')">💗</div>
+      <div class="option" onclick="wrong()">💙</div>
+      <div class="option" onclick="wrong()">💚</div>
+    </div>
+    <button class="btn" id="btn3" onclick="next(3)">Next ➡️</button>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide theme-super" id="slide4">
+    <h1>🦸 Superhero Hammad</h1>
+    <img src="hammad2.jpg">
+    <p>Strong and brave, so cool and fun,<br>Count the stars, Hammad's the one!</p>
+    <h2>How many stars? ⭐⭐⭐</h2>
+    <div class="options">
+      <div class="option" onclick="wrong()">2</div>
+      <div class="option" onclick="correct(4, 'Super Hammad!')">3</div>
+      <div class="option" onclick="wrong()">4</div>
+    </div>
+    <button class="btn" id="btn4" onclick="next(4)">Next ➡️</button>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide theme-fun" id="slide5">
+    <h1>🎈 Fun Shapes</h1>
+    <img src="kids_fun.jpg">
+    <p>Laugh and play the whole day through,<br>Find the shape that's round and true!</p>
+    <h2>Which one is a Circle?</h2>
+    <div class="options">
+      <div class="option" onclick="correct(5, 'Awesome!')">⚪</div>
+      <div class="option" onclick="wrong()">⬛</div>
+      <div class="option" onclick="wrong()">🔺</div>
+    </div>
+    <button class="btn" id="btn5" onclick="next(5)">Next ➡️</button>
+  </div>
+
+  <!-- SLIDE 6 -->
+  <div class="slide theme-super" id="slide6">
+    <h1>🎉 BIG SURPRISE 🎉</h1>
+    <img src="final.jpg">
+    <p>Hammad and Mariyam, stars so bright,<br>You fill our hearts with pure delight!</p>
+    <h2>💖 WE LOVE YOU 💖</h2>
+  </div>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    document.body.addEventListener('click', () => music.play(), { once: true });
+
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.rate = 0.9;
+      speechSynthesis.speak(msg);
+    }
+
+    function confettiBlast() {
+      for (let i = 0; i < 30; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+        c.style.animationDuration = 1 + Math.random() * 2 + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 2000);
+      }
+    }
+
+    function correct(n, voice) {
+      document.getElementById('btn' + n).style.display = 'inline-block';
+      confettiBlast();
+      speak(voice);
+    }
+    function wrong() {
+      speak('Try again');
+    }
+    function next(n) {
+      document.getElementById('slide' + n).classList.remove('active');
+      document.getElementById('slide' + (n + 1)).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
